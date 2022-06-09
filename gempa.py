@@ -33,13 +33,29 @@ def magnitude(sr):
         statusGempa = 'Tidak ada gempa'
     return statusGempa
 
-print("Suhu : ", suhuPermukaan(sp))
+ppm = int(input('Masukkan konsentrasi gas : '))
+
+def gas(ppm):
+    if ppm <= 50:
+        statusGas = 'Normal'
+    elif ppm <= 500:
+        statusGas = 'Waspada'
+    elif ppm <=1000:
+        statusGas = 'Siaga'
+    elif ppm > 1000:
+        statusGas = 'Awas'
+    else:
+        statusGas = 'Normal'
+    return statusGas
+
+print("Status Suhu : ", suhuPermukaan(sp))
 print("Status Gempa : ", magnitude(sr))
+print("Status Gas (CO) : ", gas(ppm))
 
 def prediksiGB(sp, sr):
-    if sp <35 and sr < 3:
+    if sp <=35 and sr < 3:
         prediksi = "Status Aman"
-    elif sp <35 and sr < 4 and sr >= 3:
+    elif sp <=35 and sr < 4 and sr >= 3:
         prediksi = "Status Aman"
     elif sp > 35 and sp <= 38 and sr < 3:
         prediksi = "Status Aman"
@@ -50,14 +66,16 @@ def prediksiGB(sp, sr):
     elif sp > 35 and sp <=38 and sr < 6 and sr >=4:
         prediksi = "Status Waspada"
     elif sp <=40 and sr <6 and sr >4:
+        prediksi = "Status Siaga" 
+    elif sp <=40 and sr >= 6:
         prediksi = "Status Siaga"
-    elif sp <=40 and sr > 6:
-        prediksi = "Status Siaga"
-    elif sp > 40 and sr > 6:
+    elif sp > 40 and sr >= 6:
         prediksi = "Status Awas"
+    elif sp > 40 and sr < 6 and sr >=4:
+        prediksi = "Status Siaga"
     elif sp <=35 and sr < 6 and sr >=4:
-        prediksi = "Status Waspada"
-    elif sp <=35 and sr > 6:
+        prediksi = "Status Aman"
+    elif sp <=35 and sr >= 6:
         prediksi = "Status Waspada"
     elif sp > 35 and sp <=38 and sr >6:
         prediksi = "Status Waspada"
