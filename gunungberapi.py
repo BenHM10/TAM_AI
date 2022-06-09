@@ -48,11 +48,7 @@ def gas(ppm):
         statusGas = 'Normal'
     return statusGas
 
-print("Status Suhu : ", suhuPermukaan(sp))
-print("Status Gempa : ", magnitude(sr))
-print("Status Gas (CO) : ", gas(ppm))
-
-def prediksiGB(sp, sr):
+def prediksiGB(sp, sr, ppm):
     if sp <=35 and sr < 3:
         prediksi = "Status Aman"
     elif sp <=35 and sr < 4 and sr >= 3:
@@ -69,9 +65,9 @@ def prediksiGB(sp, sr):
         prediksi = "Status Siaga" 
     elif sp <=40 and sr >= 6:
         prediksi = "Status Siaga"
-    elif sp > 40 and sr >= 6:
+    elif sp > 40 and sr >= 6 or ppm <=50:
         prediksi = "Status Awas"
-    elif sp > 40 and sr < 6 and sr >=4:
+    elif sp > 40 and sr < 6 and sr >=4 or ppm <=500:
         prediksi = "Status Siaga"
     elif sp <=35 and sr < 6 and sr >=4:
         prediksi = "Status Aman"
@@ -83,4 +79,7 @@ def prediksiGB(sp, sr):
         prediksi = "Belum Ada Prediksi"
     return prediksi
 
-print("Prediksi : ", prediksiGB(sp,sr))
+print("Status Suhu : ", suhuPermukaan(sp))
+print("Status Gempa : ", magnitude(sr))
+print("Status Gas (CO) : ", gas(ppm))
+print("Prediksi : ", prediksiGB(sp,sr,ppm))
